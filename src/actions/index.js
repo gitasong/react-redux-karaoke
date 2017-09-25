@@ -51,3 +51,12 @@ export const requestSong = (title, localSongId) => ({
   title,
   songId: localSongId
 });
+
+export const receiveSong = (title, artist, songId, songArray) => ({
+  type: types.RECEIVE_SONG,
+  songId,
+  title,
+  artist,
+  songArray,
+  receivedAt: Date.now()
+})
