@@ -13,7 +13,7 @@ function SongSearch(){
         }
 
         // this is where custom logic goes
-        console.log("SEARCHED ARTIST:");
+        console.log("SEARCHED SONG:");
         console.log(input.value.trim());
         //
 
