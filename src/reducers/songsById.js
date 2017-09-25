@@ -59,7 +59,7 @@ const songsById = (state = defaultState.songsById, action) => {
         arrayPosition: 0,
         songId: action.songId
       });
-      newState = Object.assing({}, state, {
+      newState = Object.assign({}, state, {
         [action.songId]: newSong
       });
       return newState;
