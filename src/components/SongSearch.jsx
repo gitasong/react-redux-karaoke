@@ -1,5 +1,7 @@
 import React from "react";
 import styles from "./../styles/SongSearch.css";
+import { fetchSongId } from "./../actions";
+import { connect } from "react-redux";
 
 function SongSearch(){
   let input;
