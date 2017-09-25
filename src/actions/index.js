@@ -15,3 +15,16 @@ export const selectSong = (songId) => ({
   type: types.SELECT_SONG,
   songId
 });
+
+export function fetchSongId(title) {
+  return function (dispatch) {
+    const localSongId = v4();
+    title = title.replace(" ", "_");
+    return fetch("http://api.musixmatch.com/ws/1.1/track.search?&q_track=" + title + "&page_size=1&s_track_rating=desc&apikey=Y2262c7163b127df8ac11b4a0a5cc3965").then(
+      response => response.json(),
+      error => console.log("An error occurred.", error)
+    ).then(function(json) {
+      console.log("CHECK OUT THIS SWEET API RESPONSE:", json)
+    });
+  }
+}
