@@ -40,9 +40,15 @@ export function fetchSongId(title) {
 export function fetchLyrics(title, artist, musicMatchId, localSongId, dispatch) {
   return fetch("http://api.musixmatch.com/ws/1.1/track.lyrics.get?track_id=" + musicMatchId + "&apikey=2262c7163b127df8ac11b4a0a5cc3965").then(
     response => response.json(),
-    error => console.log("An error occurred.", error)
-  ).then(function(json) {
-    console.log("HEY WOW, A SECOND API RESPONSE!", json);
+    error => console.log("An error occured.", error)).then(function(json) {
+    if (json.message.body.lyrics) {
+      let lyrics = json.message.body.lyrics.lyrics_body;
+      lyrics = lyrics.replace('"', "");
+      const songArray = lyrics.split(/\n/g);
+      dispatch(receiveSong(title, artist, localSongId, songArray));
+    } else {
+      console.log("We couldn't locate lyrics for this song!")
+    }
   });
 }
 
@@ -59,4 +65,4 @@ export const receiveSong = (title, artist, songId, songArray) => ({
   artist,
   songArray,
   receivedAt: Date.now()
-})
+});
