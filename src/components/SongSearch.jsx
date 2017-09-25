@@ -5,6 +5,11 @@ import { connect } from "react-redux";
 
 class SongSearch extends React.Component {
 
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   handleSubmit(event) {
     event.preventDefault();
     let { _title } = this.refs;
