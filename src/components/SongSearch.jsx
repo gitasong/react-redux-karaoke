@@ -5,6 +5,16 @@ import { connect } from "react-redux";
 
 class SongSearch extends React.Component {
 
+  handleSubmit(event) {
+    event.preventDefault();
+    let { _title } = this.refs;
+    if (!_title.value.trim()) {
+      return;
+    }
+    this.props.dispatch(fetchSongId(_title.value.trim()));
+    _title.value = "";
+  }
+
   render() {
     let input;
     return (
